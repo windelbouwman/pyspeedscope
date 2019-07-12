@@ -1,0 +1,5 @@
+__pycache__
+build
+dist
+speedscope.egg-info
+speedscope.json
