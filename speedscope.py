@@ -26,8 +26,12 @@ Record = namedtuple("Record", ["timestamp", "typ", "filename", "line", "name"])
 class Recorder:
     def __init__(self):
         self.records = []
+        self.use_low_res_timer = not hasattr(time, 'perf_counter')
 
     def get_nanos(self):
+        if self.use_low_res_timer:
+            return int(time.time() * 1e9)
+
         return int(time.perf_counter() * 1e9)
 
     def start(self):
